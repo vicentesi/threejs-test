@@ -38,7 +38,7 @@ h1 {
 }
 
 canvas {
-  postion: fixed;
+  position: fixed;
   top: 0;
   left: 0;
 }

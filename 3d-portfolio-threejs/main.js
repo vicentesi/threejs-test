@@ -96,14 +96,23 @@ const sphereMesh = new THREE.Mesh(
     color: COLORS.torus
   })
 );
+const objects = [];
 window.addEventListener('mousedown', function () {
-  intersects.forEach(function (intersect) {
-    if (intersect.object.name === 'ground') {
-      const sphereClone = sphereMesh.clone();
-      sphereClone.position.copy(highlightSquare.position);
-      scene.add(sphereClone);
-    }
-  })
+  const objectExist = objects.find(function (object) {
+    return (object.position.x === highlightSquare.position.x)
+      && (object.position.z === highlightSquare.position.z)
+  });
+
+  if (!objectExist) {
+    intersects.forEach(function (intersect) {
+      if (intersect.object.name === 'ground') {
+        const sphereClone = sphereMesh.clone();
+        sphereClone.position.copy(highlightSquare.position);
+        scene.add(sphereClone);
+        objects.push(sphereClone);
+      }
+    })
+  }
 });
 
 function addStar() {
@@ -124,9 +133,3 @@ function animate() {
 // EXECUTION
 Array(500).fill().forEach(addStar);
 animate();
-
-window.addEventListener('resize', function () {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth / window.innerHeight);
-});

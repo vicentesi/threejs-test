@@ -14,7 +14,8 @@ export class HighlightSquare extends Mesh {
         this.geometry = new PlaneGeometry(1, 1);
         this.material = new MeshBasicMaterial({
             side: DoubleSide,
-            color: COLORS.white
+            color: COLORS.white,
+            transparent: true
         });
 
         this.rotateX(-Math.PI / 2);

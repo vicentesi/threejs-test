@@ -16,7 +16,7 @@ export class Plane extends Mesh {
         this.geometry = new PlaneGeometry(width, height);
         this.material = new MeshBasicMaterial({
             side: DoubleSide,
-            color: COLORS.platformB,
+            color: COLORS.platform,
             visible: false // but present in scene
         });
         this.rotateX(-Math.PI / 2);
